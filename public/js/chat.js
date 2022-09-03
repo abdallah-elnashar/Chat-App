@@ -12,7 +12,7 @@ const messageTemplate = document.querySelector("#message-template").innerHTML;
 const LocationMessageTemplate = document.querySelector(
   "#location-message-template"
 ).innerHTML;
-const sidebarTemplate = document.querySelector("#sidebar__template").innerHTML;
+const sidebarTemplate = document.querySelector("#sidebar-template").innerHTML;
 
 // options
 const { username, room } = Qs.parse(location.search, {
@@ -59,7 +59,10 @@ socket.on("locationMessage", (text) => {
 ///// side bar
 
 socket.on("roomData", ({ room, users }) => {
-  const html = Mustache.render(sidebarTemplate, { room, users });
+  const html = Mustache.render(sidebarTemplate, {
+    room,
+    users,
+  });
   document.querySelector("#sidebar").innerHTML = html;
 });
 
